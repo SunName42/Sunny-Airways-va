@@ -1,152 +1,233 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unsere Flotte</title>
-  <style>
-    :root {
-      --secondary-mint: #37EBB8;
-      --secondary-dark: #22253B;
-      --bg: #ffffff;
-      --text: #1a1a1a;
-      --card-border: #e6e6e6;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtuelle Airline – Flotte</title>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen;
-    }
+    <!-- Schriftart -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      padding: 3rem 1.5rem;
-    }
+    <style>
+        :root {
+            --secondary-mint: #37EBB8;
+            --secondary-dark: #22253B;
+            --bg: #ffffff;
+            --text: #22253B;
+            --card-border: #e6e6e6;
+        }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 2rem;
-      color: var(--secondary-dark);
-    }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: 80px;   /* Platz für fixe Navbar */
+            padding-bottom: 80px;/* Platz für fixen Footer */
+        }
 
-    .fleet-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
+        /* ================= HEADER / NAVBAR ================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #ffffff 0%, #f0f8ff 100%);
+            display: flex;
+            align-items: center;
+            padding: 15px 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
 
-    .fleet-card {
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      background-color: #fff;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+        .logo {
+            height: 40px;
+            margin-right: 30px;
+        }
 
-    .fleet-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-    }
+        nav {
+            flex: 1;
+        }
 
-    .aircraft-type {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--secondary-dark);
-    }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
 
-    .spec {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.35rem 0;
-      font-size: 0.95rem;
-      border-bottom: 1px dashed #eee;
-    }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary-dark);
+            padding: 10px 18px;
+            border-radius: 25px;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
 
-    .spec:last-child {
-      border-bottom: none;
-    }
+        nav ul li a:hover {
+            background-color: #e0e0e0;
+        }
 
-    .label {
-      color: #666;
-    }
+        nav ul li a.active {
+            background-color: var(--secondary-mint);
+            color: #000;
+            font-weight: 600;
+        }
 
-    .value {
-      font-weight: 500;
-    }
+        /* ================= MAIN ================= */
+        main {
+            padding: 40px 20px;
+        }
 
-    .accent {
-      margin-top: 1rem;
-      height: 4px;
-      width: 40px;
-      border-radius: 4px;
-      background: linear-gradient(90deg, var(--secondary-mint), var(--secondary-dark));
-    }
-  </style>
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--secondary-dark);
+            text-align: center;
+        }
+
+        /* ================= FLEET ================= */
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .fleet-card {
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .fleet-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .aircraft-type {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--secondary-dark);
+        }
+
+        .spec {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.35rem 0;
+            font-size: 0.95rem;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .spec:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            color: #666;
+        }
+
+        .value {
+            font-weight: 500;
+        }
+
+        .accent {
+            margin-top: 1rem;
+            height: 4px;
+            width: 40px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--secondary-mint), var(--secondary-dark));
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--secondary-dark);
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Unsere Flotte</h1>
 
-    <div class="fleet-grid">
-      <div class="fleet-card">
-        <div class="aircraft-type">Airbus A320-200</div>
-        <div class="spec"><span class="label">Top Air Speed</span><span class="value">Mach 0.82</span></div>
-        <div class="spec"><span class="label">Max Flughöhe</span><span class="value">39.000 ft</span></div>
-        <div class="spec"><span class="label">Triebwerk</span><span class="value">CFM56 / IAE V2500</span></div>
-        <div class="spec"><span class="label">Tailnumber</span><span class="value">D-SADT</span></div>
-        <div class="spec"><span class="label">Max Range</span><span class="value">6.300 km</span></div>
-        <div class="accent"></div>
-      </div>
+<header>
+    <img class="logo" src="https://via.placeholder.com/150x40/37EBB8/22253B?text=VirtualAir+Logo" alt="VirtualAir Logo">
+    <nav>
+        <ul>
+            <li><a href="#" class="active">Startseite</a></li>
+            <li><a href="#">Flüge</a></li>
+            <li><a href="#">Über uns</a></li>
+            <li><a href="#">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
 
-      <div class="fleet-card">
-        <div class="aircraft-type">Airbus A330-300</div>
-        <div class="spec"><span class="label">Top Air Speed</span><span class="value">Mach 0.86</span></div>
-        <div class="spec"><span class="label">Max Flughöhe</span><span class="value">41.000 ft</span></div>
-        <div class="spec"><span class="label">Triebwerk</span><span class="value">Trent 700 / CF6</span></div>
-        <div class="spec"><span class="label">Tailnumber</span><span class="value">D-SAAA</span></div>
-        <div class="spec"><span class="label">Max Range</span><span class="value">11.750 km</span></div>
-        <div class="accent"></div>
-      </div>
+<main>
+    <div class="container">
+        <h1>Unsere Flotte</h1>
 
-      <div class="fleet-card">
-        <div class="aircraft-type">Airbus A350-900</div>
-        <div class="spec"><span class="label">Top Air Speed</span><span class="value">Mach 0.85</span></div>
-        <div class="spec"><span class="label">Max Flughöhe</span><span class="value">43.000 ft</span></div>
-        <div class="spec"><span class="label">Triebwerk</span><span class="value">Rolls-Royce Trent XWB</span></div>
-        <div class="spec"><span class="label">Tailnumber</span><span class="value">D-SASA, D-SAMG, D-SALH</span></div>
-        <div class="spec"><span class="label">Max Range</span><span class="value">15.000 km</span></div>
-        <div class="accent"></div>
-      </div>
+        <div class="fleet-grid">
+            <div class="fleet-card">
+                <div class="aircraft-type">Airbus A320-200</div>
+                <div class="spec"><span class="label">Top Air Speed</span><span class="value">Mach 0.82</span></div>
+                <div class="spec"><span class="label">Max Flughöhe</span><span class="value">39.000 ft</span></div>
+                <div class="spec"><span class="label">Triebwerk</span><span class="value">CFM56 / IAE V2500</span></div>
+                <div class="spec"><span class="label">Tailnumber</span><span class="value">VA-320</span></div>
+                <div class="spec"><span class="label">Max Range</span><span class="value">6.300 km</span></div>
+                <div class="accent"></div>
+            </div>
 
-      <div class="fleet-card">
-        <div class="aircraft-type">Boeing 737-800</div>
-        <div class="spec"><span class="label">Top Air Speed</span><span class="value">Mach 0.79</span></div>
-        <div class="spec"><span class="label">Max Flughöhe</span><span class="value">41.000 ft</span></div>
-        <div class="spec"><span class="label">Triebwerk</span><span class="value">CFM56-7B</span></div>
-        <div class="spec"><span class="label">Tailnumber</span><span class="value">D-SARP</span></div>
-        <div class="spec"><span class="label">Max Range</span><span class="value">5.765 km</span></div>
-        <div class="accent"></div>
-      </div>
+            <div class="fleet-card">
+                <div class="aircraft-type">Airbus A330-300</div>
+                <div class="spec"><span class="label">Top Air Speed</span><span class="value">Mach 0.86</span></div>
+                <div class="spec"><span class="label">Max Flughöhe</span><span class="value">41.000 ft</span></div>
+                <div class="spec"><span class="label">Triebwerk</span><span class="value">Trent 700 / CF6</span></div>
+                <div class="spec"><span class="label">Tailnumber</span><span class="value">VA-330</span></div>
+                <div class="spec"><span class="label">Max Range</span><span class="value">11.750 km</span></div>
+                <div class="accent"></div>
+            </div>
 
-      <div class="fleet-card">
-        <div class="aircraft-type">Boeing 777-300ER</div>
-        <div class="spec"><span class="label">Top Air Speed</span><span class="value">Mach 0.89</span></div>
-        <div class="spec"><span class="label">Max Flughöhe</span><span class="value">43.100 ft</span></div>
-        <div class="spec"><span class="label">Triebwerk</span><span class="value">GE90-115B</span></div>
-        <div class="spec"><span class="label">Tailnumber</span><span class="value">D-SAMS</span></div>
-        <div class="spec"><span class="label">Max Range</span><span class="value">13.650 km</span></div>
-        <div class="accent"></div>
-      </div>
+            <div class="fleet-card">
+                <div class="aircraft-type">Airbus A350-900</div>
+                <div class="spec"><span class="label">Top Air Speed</span><span class="value">Mach 0.85</span></div>
+                <div class="spec"><span class="label">Max Flughöhe</span><span class="value">43.000 ft</span></div>
+                <div class="spec"><span class="label">Triebwerk</span><span class="value">Rolls-Royce Trent XWB</span></div>
+                <div class="spec"><span class="label">Tailnumber</span><span class="value">VA-359</span></div>
+                <div class="spec"><span class="label">Max Range</span><span class="value">15.000 km</span></div>
+                <div class="accent"></div>
+            </div>
+        </div>
     </div>
-  </div>
+</main>
+
+<footer>
+    &copy; 2026 VirtualAir – Alle Rechte vorbehalten
+</footer>
+
 </body>
-</html>
+</html> 
