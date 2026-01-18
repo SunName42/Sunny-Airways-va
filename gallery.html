@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie</title>
+    <link rel="icon" type="image/x-icon" href="sunnyairways_icon.ico">
+
+    <!-- Schriftart -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --secondary-mint: #37EBB8;
+            --secondary-dark: #22253B;
+            --bg: #ffffff;
+            --text: #22253B;
+            --card-border: #e6e6e6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: 80px;   /* Platz für fixe Navbar */
+            padding-bottom: 80px;/* Platz für fixen Footer */
+        }
+
+        /* ================= HEADER / NAVBAR ================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #ffffff 0%, #f0f8ff 100%);
+            display: flex;
+            align-items: center;
+            padding: 10px 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            height: 80px;
+        }
+        .logo {
+            width: 280px;
+            height: auto;
+            margin-right: 30px;
+            transform: scale(1.2);
+        }
+        nav {
+            flex: 1;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary-dark);
+            padding: 10px 18px;
+            border-radius: 25px;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #e0e0e0;
+        }
+
+        nav ul li a.active {
+            background-color: var(--secondary-mint);
+            color: #000;
+            font-weight: 600;
+        }
+
+        /* ================= MAIN ================= */
+        main {
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--secondary-dark);
+            text-align: center;
+        }
+
+              /* ================= GALLERY GRID ================= */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* ================= LIGHTBOX ================= */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+        }
+        .lightbox.active {
+            display: block;
+        }
+        .lightbox-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90vh;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+        }
+        .lightbox-arrow.left {
+            left: 40px;
+        }
+        .lightbox-arrow.right {
+            right: 40px;
+        }
+        .lightbox-counter {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 16px;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--secondary-dark);
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img class="logo" src="Sunny_Airways.png" alt="VirtualAir Logo">
+    <nav>
+        <ul>
+            <li><a href="index.html">Startseite</a></li>
+            <li><a href="#">Flüge</a></li>
+            <li><a href="fleet.html">Flotte</a></li>
+            <li><a href="gallery.html" class="active">Galerie</a></li>
+            <li><a href="#">Über uns</a></li>
+            <li><a href="#">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="container">
+        <h1>Galerie</h1>
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Hier KEINE img-Links bitte, das übernimmt das JavaScript-Skript -->
+        </div>
+    </div>
+</main>
+
+<footer>
+    &copy; 2026 Shams Ahmadi & Marcel Giraldo – Alle Rechte vorbehalten
+</footer>
+
+</body>
+  <script>
+    // Hier in den Array müssen unsere Aufnahmen rein bitte (mit Komma getrennt)
+    const images = [
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ];
+
+    let currentImageIndex = 0;
+
+    const galleryGrid = document.getElementById('galleryGrid');
+    images.forEach((src, index) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `<img src="${src}" alt="Gallery Image ${index + 1}">`;
+        item.addEventListener('click', () => openLightbox(index));
+        galleryGrid.appendChild(item);
+    });
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const closeLightbox = document.getElementById('closeLightbox');
+    const prevImage = document.getElementById('prevImage');
+    const nextImage = document.getElementById('nextImage');
+    const imageCounter = document.getElementById('imageCounter');
+
+    function openLightbox(index) {
+        currentImageIndex = index;
+        updateLightboxImage();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightboxFunc() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    function updateLightboxImage() {
+        lightboxImage.src = images[currentImageIndex];
+        imageCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+    }
+
+    function showNextImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        updateLightboxImage();
+    }
+
+    function showPrevImage() {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        updateLightboxImage();
+    }
+
+    closeLightbox.addEventListener('click', closeLightboxFunc);
+    nextImage.addEventListener('click', showNextImage);
+    prevImage.addEventListener('click', showPrevImage);
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightboxFunc();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        
+        if (e.key === 'ArrowRight') showNextImage();
+        if (e.key === 'ArrowLeft') showPrevImage();
+        if (e.key === 'Escape') closeLightboxFunc();
+    });
+</script>
+</html> 
