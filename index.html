@@ -112,10 +112,24 @@
             font-size: 0.9rem;
         }
 
+        /* ================ BG VIDEO ============== */
+
+        bg-video {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
         /* ================= RESPONSIVE ================= */
         @media (max-width: 768px) {
             nav ul {
                 flex-direction: column;
+            }
+
+            bg-video {
+                width: 100%;
+                height: auto;
             }
         }
     </style>
@@ -138,7 +152,7 @@
 
 <main>
 
-    <video autoplay loop muted plays-inline>
+    <video autoplay loop muted plays-inline class="bg-video">
         <source src="placeholder_vid.mp4" type="video/mp4">
     </video>
 
